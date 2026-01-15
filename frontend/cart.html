@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Bag | Glamour Cosmetics</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <header></header>
+
+    <div class="page-header fade-in">
+        <div class="container">
+            <h1>Shopping Bag</h1>
+        </div>
+    </div>
+
+    <div class="container" style="padding-bottom: var(--spacing-xl); min-height: 60vh;">
+
+        <div style="margin-bottom: 4rem;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody id="cart-items">
+                    <!-- Cart items injected here -->
+                </tbody>
+            </table>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end;">
+            <div
+                style="width: 100%; max-width: 400px; background: #fbfbfb; padding: 2rem; border-radius: var(--radius-sm);">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; font-size: 1.1rem;">
+                    <span>Subtotal</span>
+                    <span id="cart-total" style="font-weight: 600;">$0.00</span>
+                </div>
+                <p style="font-size: 0.85rem; color: #888; margin-bottom: 2rem;">Shipping and taxes calculated at
+                    checkout.</p>
+
+                <button class="btn" onclick="alert('Proceeding to checkout...')" style="width: 100%;">Checkout</button>
+                <div style="text-align: center; margin-top: 1rem;">
+                    <a href="products.html" style="font-size: 0.9rem; text-decoration: underline;">Continue Shopping</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer></footer>
+
+    <script src="js/app.js"></script>
+    <script src="js/cart.js"></script>
+</body>
+
+</html>

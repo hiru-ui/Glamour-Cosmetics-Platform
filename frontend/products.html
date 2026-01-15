@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Collection | Glamour Cosmetics</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <header></header>
+
+    <!-- Page Header -->
+    <div class="page-header fade-in">
+        <div class="container">
+            <h1>The Collection</h1>
+            <p style="max-width: 600px; margin: 0 auto; color: #666; font-size: 1.1rem; font-weight: 300;">
+                Explore our curated selection of essentials, designed to enhance your natural radiance.
+            </p>
+        </div>
+    </div>
+
+    <div class="container" style="padding-bottom: var(--spacing-xl);">
+        <!-- Optional Controls -->
+        <div
+            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem; border-bottom: 1px solid #eee; padding-bottom: 1rem;">
+            <span style="color: #888; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px;">Showing all
+                products</span>
+            <div style="display: flex; gap: 1rem;">
+                <!-- Filter Mockup -->
+                <select
+                    style="border: none; background: transparent; font-family: var(--font-body); font-weight: 500; cursor: pointer;">
+                    <option>Sort by: Featured</option>
+                    <option>Price: Low to High</option>
+                    <option>Price: High to Low</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="product-list"
+            style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 4rem 2rem;">
+            <!-- Products injected here -->
+        </div>
+    </div>
+
+    <footer></footer>
+
+    <script src="js/app.js"></script>
+    <script src="js/shop.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            Shop.loadAllProducts();
+        });
+    </script>
+</body>
+
+</html>

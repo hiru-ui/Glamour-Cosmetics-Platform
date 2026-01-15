@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Glamour Cosmetics</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+    <header id="main-header"></header>
+
+    <div class="container fade-in"
+        style="padding-top: var(--spacing-md); padding-bottom: var(--spacing-xl); min-height: 80vh;">
+
+        <div class="admin-header">
+            <div>
+                <h1>Dashboard</h1>
+                <p style="opacity: 0.8; font-size: 0.9rem;">Manage inventory and products</p>
+            </div>
+            <a href="form.html" class="btn" style="background: white; color: black; border-color: white;">+ Add New
+                Product</a>
+        </div>
+
+        <div
+            style="background: white; box-shadow: var(--shadow-soft); border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-color);">
+            <table style="margin-bottom: 0;">
+                <thead style="background: #f9f9f9;">
+                    <tr>
+                        <th style="padding-left: 2rem;">ID</th>
+                        <th>Product</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="admin-products-list">
+                    <!-- Products injected here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <footer></footer>
+
+    <script src="../js/app.js"></script>
+    <script src="../js/shop.js"></script>
+    <script src="../js/admin.js"></script>
+    <script>
+        // Override Admin.loadProducts to match new table structure if needed
+        // Or ensure admin.js generates compatible rows
+        const originalLoad = Admin.loadProducts;
+        Admin.loadProducts = async () => {
+            const tbody = document.getElementById('admin-products-list');
+            if (!tbody) return;
+            tbody.innerHTML = '<tr><td colspan="6" style="padding: 3rem; text-align: center;">Loading...</td></tr>';
+
+            try {
+                const products = await Shop.fetchProducts();
+                if (products.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="6" style="padding: 3rem; text-align: center;">No products found. Add one to get started!</td></tr>';
+                    return;
+                }
+
+                tbody.innerHTML = products.map(product => `
+                    <tr>
+                        <td style="padding-left: 2rem; color: #888;">#${product.id}</td>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <img src="${product.imageUrl}" alt="${product.name}" style="width: 48px; height: 48px; object-fit: cover; border-radius: 6px;">
+                                <span style="font-weight: 600;">${product.name}</span>
+                            </div>
+                        </td>
+                        <td><span style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;">${product.category}</span></td>
+                        <td style="font-weight: 600;">${Utils.formatCurrency(product.price)}</td>
+                        <td>
+                            ${product.stockQuantity > 0 ? '<span class="status-badge status-instock">In Stock</span>' : '<span class="status-badge status-low">Out of Stock</span>'}
+                        </td>
+                        <td>
+                            <div style="display: flex; gap: 0.5rem;">
+                                <a href="form.html?id=${product.id}" class="action-btn" style="width: 32px; height: 32px; font-size: 0.9rem;" title="Edit">✏️</a>
+                                <button onclick="Admin.deleteProduct(${product.id})" class="action-btn" style="width: 32px; height: 32px; font-size: 0.9rem; color: var(--color-error);" title="Delete">🗑️</button>
+                            </div>
+                        </td>
+                    </tr>
+                `).join('');
+
+            } catch (e) {
+                tbody.innerHTML = '<tr><td colspan="6" style="padding: 3rem; text-align: center; color: red;">Error loading products. Is backend running?</td></tr>';
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glamour E-Store | Beauty Essentials</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <header id="main-header"></header>
+
+    <!-- Hero Slider -->
+    <div class="slider-container" id="hero-slider">
+        <!-- Slide 1 -->
+        <div class="slide active"
+            style="background-image: url('https://images.unsplash.com/photo-1596462502278-27bfdd403cc2?q=80&w=1920&auto=format&fit=crop');">
+            <div class="slide-content">
+                <span
+                    style="color: var(--color-accent-pink); font-weight: 700; letter-spacing: 2px; text-transform: uppercase;">New
+                    Arrival</span>
+                <h2>Summer Glow Collection</h2>
+                <p>Get that perfect sun-kissed look with our new range of bronzers and highlighters.</p>
+                <a href="products.html" class="btn">Shop Collection</a>
+            </div>
+        </div>
+        <!-- Slide 2 -->
+        <div class="slide"
+            style="background-image: url('https://images.unsplash.com/photo-1618331835717-801e976710b2?q=80&w=1920&auto=format&fit=crop');">
+            <div class="slide-content">
+                <span
+                    style="color: var(--color-accent-teal); font-weight: 700; letter-spacing: 2px; text-transform: uppercase;">Exclusive
+                    Deal</span>
+                <h2>Buy 1 Get 1 Free</h2>
+                <p>On all skincare essentials. Limited time offer.</p>
+                <a href="products.html" class="btn">View Offers</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Categories -->
+        <div class="category-grid">
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1596462502278-27bfdd403cc2?w=500" alt="Makeup">
+                <div class="category-overlay">Makeup</div>
+            </div>
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=500" alt="Skincare">
+                <div class="category-overlay">Skincare</div>
+            </div>
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?w=500" alt="Fragrance">
+                <div class="category-overlay">Fragrance</div>
+            </div>
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1522335789203-abd6538d8ad1?w=500" alt="Tools">
+                <div class="category-overlay">Tools</div>
+            </div>
+        </div>
+
+        <!-- Featured Products -->
+        <div style="text-align: center; margin-bottom: 3rem;">
+            <h2 style="font-size: 2.5rem; margin-bottom: 0.5rem; font-family: var(--font-heading);">Trending Now</h2>
+            <p style="color: #777;">Top picks this week</p>
+        </div>
+
+        <div id="featured-products" class="product-grid">
+            <div class="loading">Loading products...</div>
+        </div>
+
+        <div style="text-align: center; margin-bottom: 5rem;">
+            <a href="products.html" class="btn btn-secondary">View All Products</a>
+        </div>
+    </div>
+
+    <footer></footer>
+
+    <script src="js/app.js"></script>
+    <script src="js/shop.js"></script>
+    <script>
+        // Simple Auto Slider Logic
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+        setInterval(nextSlide, 5000); // 5s interval
+
+        // Load Products
+        document.addEventListener('DOMContentLoaded', () => {
+            Shop.loadFeaturedProducts(4);
+        });
+    </script>
+</body>
+
+</html>
