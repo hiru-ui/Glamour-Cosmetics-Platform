@@ -66,38 +66,44 @@ const Utils = {
         const footer = `
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-col">
-                    <h4>About Us</h4>
-                    <p style="color: #999; font-size: 0.9rem;">Your destination for premium beauty essentials. We bring you the world's best cosmetics at your fingertips.</p>
+                <div class="footer-col" style="max-width: 300px;">
+                    <a href="${prefix}index.html" class="logo" style="color: white; font-size: 1.5rem; display: block; margin-bottom: 1rem;">GLAMOUR.</a>
+                    <p style="color: #999; font-size: 0.9rem; line-height: 1.8;">Redefining beauty with premium cosmetics. Join our community of radiance and style.</p>
+                    <div style="margin-top: 1.5rem; display: flex; gap: 1rem;">
+                        <a href="#" style="color: white; opacity: 0.7; font-size: 1.2rem;">IG</a>
+                        <a href="#" style="color: white; opacity: 0.7; font-size: 1.2rem;">FB</a>
+                        <a href="#" style="color: white; opacity: 0.7; font-size: 1.2rem;">TW</a>
+                    </div>
                 </div>
                 <div class="footer-col">
-                    <h4>Customer Care</h4>
-                    <ul>
-                        <li><a href="#">Contact Support</a></li>
-                        <li><a href="#">Shipping Policy</a></li>
-                        <li><a href="#">Returns & Exchanges</a></li>
-                        <li><a href="#">FAQs</a></li>
+                    <h4 style="color: white; opacity: 0.9;">Customer Care</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li><a href="#" style="color: #888; text-decoration: none; transition: 0.3s; display: block; margin-bottom: 0.5rem;">Contact Support</a></li>
+                        <li><a href="#" style="color: #888; text-decoration: none; transition: 0.3s; display: block; margin-bottom: 0.5rem;">Shipping Policy</a></li>
+                        <li><a href="#" style="color: #888; text-decoration: none; transition: 0.3s; display: block; margin-bottom: 0.5rem;">Returns</a></li>
+                        <li><a href="#" style="color: #888; text-decoration: none; transition: 0.3s; display: block;">FAQ</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>Quick Links</h4>
-                     <ul>
-                        <li><a href="${prefix}index.html">Home</a></li>
-                        <li><a href="${prefix}products.html">Shop All</a></li>
-                        <li><a href="${prefix}admin/dashboard.html">Admin Login</a></li>
+                    <h4 style="color: white; opacity: 0.9;">Explore</h4>
+                     <ul style="list-style: none; padding: 0;">
+                        <li><a href="${prefix}index.html" style="color: #888; text-decoration: none; transition: 0.3s; display: block; margin-bottom: 0.5rem;">Home</a></li>
+                        <li><a href="${prefix}products.html" style="color: #888; text-decoration: none; transition: 0.3s; display: block; margin-bottom: 0.5rem;">Shop All</a></li>
+                        <li><a href="${prefix}products.html?filter=new" style="color: #888; text-decoration: none; transition: 0.3s; display: block; margin-bottom: 0.5rem;">New Arrivals</a></li>
+                        <li><a href="${prefix}admin/dashboard.html" style="color: #888; text-decoration: none; transition: 0.3s; display: block;">Admin Access</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>Newsletter</h4>
-                    <p style="color: #999; margin-bottom: 1rem; font-size: 0.9rem;">Subscribe for latest updates and offers.</p>
-                    <div style="display: flex;">
-                        <input type="email" placeholder="Your Email" style="padding: 10px; border: none; width: 100%;">
-                        <button style="background: var(--color-accent-pink); border: none; color: white; padding: 0 15px; cursor: pointer;">→</button>
+                    <h4 style="color: white; opacity: 0.9;">Stay in the loop</h4>
+                    <p style="color: #888; margin-bottom: 1rem; font-size: 0.9rem;">Exclusive offers and beauty tips.</p>
+                    <div style="display: flex; background: rgba(255,255,255,0.1); padding: 5px; border-radius: 50px;">
+                        <input type="email" placeholder="Your Email" style="flex: 1; padding: 10px 15px; background: transparent; border: none; color: white; outline: none;">
+                        <button style="background: var(--color-accent-pink); border: none; color: white; padding: 8px 20px; border-radius: 50px; cursor: pointer; font-weight: 600;">Join</button>
                     </div>
                 </div>
             </div>
-            <div style="text-align: center; margin-top: 3rem; border-top: 1px solid #333; padding-top: 2rem; color: #555; font-size: 0.8rem;">
-                &copy; 2026 Glamour Cosmetics. All Rights Reserved.
+            <div style="text-align: center; margin-top: 4rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; color: #555; font-size: 0.85rem;">
+                &copy; 2026 Glamour Cosmetics. Designed for elegance.
             </div>
         </div>
         `;

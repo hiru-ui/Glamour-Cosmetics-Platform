@@ -4,53 +4,1059 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop Collection | Glamour Cosmetics</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>Shop Collection | Glamour E-Store</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #1a1a1a;
+            --color-secondary: #f8f6f3;
+            --color-accent-gold: #d4af37;
+            --color-accent-rose: #d4a5a5;
+            --color-accent-sage: #9caf88;
+            --color-text-dark: #2c2c2c;
+            --color-text-light: #7a7a7a;
+            --font-heading: 'Cormorant Garamond', serif;
+            --font-body: 'Montserrat', sans-serif;
+            --transition-smooth: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            --spacing-xl: 6rem;
+            --radius-sm: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text-dark);
+            background: linear-gradient(180deg, var(--color-secondary) 0%, #f0ede8 100%);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(248, 246, 243, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1.5rem 5%;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, var(--color-accent-gold), var(--color-accent-rose));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--color-text-dark);
+            text-decoration: none;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-accent-gold);
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-accent-gold);
+        }
+
+        /* Page Header */
+        .page-header {
+            margin-top: 80px;
+            padding: 5rem 5% 4rem;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(212, 165, 165, 0.08));
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.12), transparent);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .page-header::after {
+            content: '';
+            position: absolute;
+            bottom: -40%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(212, 165, 165, 0.1), transparent);
+            border-radius: 50%;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-30px) rotate(5deg);
+            }
+        }
+
+        .page-header h1 {
+            font-family: var(--font-heading);
+            font-size: 4rem;
+            font-weight: 700;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            background: linear-gradient(135deg, var(--color-text-dark), var(--color-accent-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--color-text-light);
+            font-size: 1.1rem;
+            font-weight: 300;
+            text-align: center;
+            line-height: 1.8;
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        /* Filter Section */
+        .filter-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 3rem 0;
+            padding: 2rem;
+            background: white;
+            border-radius: var(--radius-sm);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .filter-left {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.75rem 1.5rem;
+            background: transparent;
+            border: 2px solid var(--color-accent-gold);
+            color: var(--color-accent-gold);
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--color-accent-gold);
+            color: white;
+        }
+
+        .product-count {
+            color: var(--color-text-light);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-left: 1rem;
+        }
+
+        .sort-select {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid #e0e0e0;
+            background: white;
+            font-family: var(--font-body);
+            font-weight: 500;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s;
+            color: var(--color-text-dark);
+        }
+
+        .sort-select:focus {
+            outline: none;
+            border-color: var(--color-accent-gold);
+        }
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-bottom: 6rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            transition: var(--transition-smooth);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            animation: fadeIn 0.6s ease-out both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-image {
+            position: relative;
+            height: 350px;
+            overflow: hidden;
+            background: #f5f5f5;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-smooth);
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.08);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--color-accent-gold);
+            color: white;
+            padding: 0.5rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-radius: 30px;
+            z-index: 2;
+        }
+
+        .product-badge.new {
+            background: var(--color-accent-sage);
+        }
+
+        .product-badge.sale {
+            background: var(--color-accent-rose);
+        }
+
+        .quick-view {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(100%);
+            opacity: 0;
+            padding: 0.75rem 2rem;
+            background: white;
+            color: var(--color-text-dark);
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.4s;
+            z-index: 3;
+        }
+
+        .product-card:hover .quick-view {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        .quick-view:hover {
+            background: var(--color-accent-gold);
+            color: white;
+        }
+
+        .product-info {
+            padding: 2rem;
+        }
+
+        .product-category {
+            font-size: 0.85rem;
+            color: var(--color-text-light);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .product-name {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--color-text-dark);
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .stars {
+            color: var(--color-accent-gold);
+            font-size: 0.9rem;
+        }
+
+        .rating-count {
+            font-size: 0.85rem;
+            color: var(--color-text-light);
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--color-accent-gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .product-price .original-price {
+            font-size: 1rem;
+            color: var(--color-text-light);
+            text-decoration: line-through;
+            margin-left: 0.5rem;
+            font-weight: 400;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 1rem;
+            background: var(--color-text-dark);
+            color: white;
+            border: none;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+
+        .add-to-cart::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--color-accent-gold);
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+
+        .add-to-cart:hover::before {
+            left: 0;
+        }
+
+        .add-to-cart:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color-primary);
+            color: white;
+            padding: 4rem 5%;
+            margin-top: 6rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+        }
+
+        .footer-section h3 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--color-accent-gold);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--color-accent-gold);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .page-header h1 {
+                font-size: 3rem;
+            }
+
+            .filter-section {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <header></header>
+    <header>
+        <nav>
+            <div class="logo">GLAMOUR</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Shop</a></li>
+                <li><a href="categories.html">Categories</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <!-- Page Header -->
     <div class="page-header fade-in">
         <div class="container">
             <h1>The Collection</h1>
-            <p style="max-width: 600px; margin: 0 auto; color: #666; font-size: 1.1rem; font-weight: 300;">
-                Explore our curated selection of essentials, designed to enhance your natural radiance.
+            <p>
+                Explore our curated selection of beauty essentials, designed to enhance your natural radiance and
+                elevate your daily ritual.
             </p>
         </div>
     </div>
 
     <div class="container" style="padding-bottom: var(--spacing-xl);">
-        <!-- Optional Controls -->
-        <div
-            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem; border-bottom: 1px solid #eee; padding-bottom: 1rem;">
-            <span style="color: #888; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px;">Showing all
-                products</span>
-            <div style="display: flex; gap: 1rem;">
-                <!-- Filter Mockup -->
-                <select
-                    style="border: none; background: transparent; font-family: var(--font-body); font-weight: 500; cursor: pointer;">
-                    <option>Sort by: Featured</option>
-                    <option>Price: Low to High</option>
-                    <option>Price: High to Low</option>
-                </select>
+        <!-- Filter Section -->
+        <div class="filter-section">
+            <div class="filter-left">
+                <button class="filter-btn active" onclick="filterProducts('all')">All</button>
+                <button class="filter-btn" onclick="filterProducts('makeup')">Makeup</button>
+                <button class="filter-btn" onclick="filterProducts('skincare')">Skincare</button>
+                <button class="filter-btn" onclick="filterProducts('fragrance')">Fragrance</button>
+                <button class="filter-btn" onclick="filterProducts('tools')">Tools</button>
+                <span class="product-count" id="product-count">Showing all products</span>
             </div>
+            <select class="sort-select" onchange="sortProducts(this.value)">
+                <option value="featured">Sort by: Featured</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="rating">Highest Rated</option>
+            </select>
         </div>
 
-        <div id="product-list"
-            style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 4rem 2rem;">
+        <!-- Product Grid -->
+        <div id="product-list" class="product-grid">
             <!-- Products injected here -->
         </div>
     </div>
 
-    <footer></footer>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Glamour</h3>
+                <ul>
+                    <li><a href="#">Our Story</a></li>
+                    <li><a href="#">Sustainability</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="admin/dashboard.html" style="color: var(--color-accent-gold);">Admin Dashboard</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Customer Care</h3>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Shipping Info</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Shop</h3>
+                <ul>
+                    <li><a href="#">Makeup</a></li>
+                    <li><a href="#">Skincare</a></li>
+                    <li><a href="#">Fragrance</a></li>
+                    <li><a href="#">Tools & Brushes</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <ul>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Pinterest</a></li>
+                    <li><a href="#">YouTube</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Glamour E-Store. All rights reserved. | Beauty Redefined</p>
+        </div>
+    </footer>
 
-    <script src="js/app.js"></script>
-    <script src="js/shop.js"></script>
     <script>
+        // Comprehensive product catalog - 24 products
+        const allProducts = [
+            // Makeup Products (8)
+            {
+                id: 1,
+                name: 'Velvet Matte Lipstick',
+                category: 'makeup',
+                price: 34.99,
+                originalPrice: null,
+                image: 'https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=500&q=80',
+                badge: 'Bestseller',
+                rating: 4.9,
+                reviews: 342
+            },
+            {
+                id: 2,
+                name: 'Luxury Face Palette',
+                category: 'makeup',
+                price: 129.99,
+                originalPrice: null,
+                image: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=500&q=80',
+                badge: 'Limited',
+                rating: 4.7,
+                reviews: 189
+            },
+            {
+                id: 3,
+                name: 'Cream Blush Stick',
+                category: 'makeup',
+                price: 28.99,
+                originalPrice: 36.99,
+                image: 'https://images.unsplash.com/photo-1631214524020-7e18db9a8f92?w=500&q=80',
+                badge: 'Sale',
+                rating: 4.8,
+                reviews: 267
+            },
+            {
+                id: 4,
+                name: 'HD Foundation',
+                category: 'makeup',
+                price: 52.99,
+                originalPrice: null,
+                image: 'https://images.unsplash.com/photo-1631730486572-226d1f595b68?w=500&q=80',
+                badge: 'New',
+                rating: 4.6,
+                reviews: 156
+            },
+            {
+                id: 5,
+                name: 'Eyeshadow Palette Pro',
+                category: 'makeup',
+                price: 89.99,
+                originalPrice: null,
+                image: 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=500&q=80',
+                badge: null,
+                rating: 4.9,
+                reviews: 421
+            },
+            {
+                id: 6,
+                name: 'Mascara Volume Max',
+                category: 'makeup',
+                price: 24.99,
+                originalPrice: null,
+                image: 'https://images.unsplash.com/photo-1631214524020-7e18db9a8f92?w=500&q=80',
+                badge: null,
+                rating: 4.5,
+                reviews: 298
+            },
+            {
+                id: 24,
+                name: 'Nude Lipstick Trio',
+                category: 'makeup',
+                price: 64.99,
+                originalPrice: null,
+                image: 'https://images.unsplash.com/photo-1631214524020-7e18db9a8f92?w=500&q=80',
+                badge: null,
+                rating: 4.8,
+                reviews: 276
+            },
+            {
+                id: 25,
+                name: 'Bronzer & Highlighter Duo',
+                category: 'makeup',
+                price: 45.99,
+                originalPrice: 58.99,
+                image: 'https://images.unsplash.com/photo-1596462502278-27bfdd403cc2?w=500&q=80',
+                badge: 'Sale',
+                rating: 4.7,
+                reviews: 334
+            },
+
+            // Skincare Products (8)
+            {
+                id: 7,
+                name: 'Radiant Glow Serum',
+                category: 'skincare',
+                price: 89.99,
+                originalPrice: null,
+                image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=500&q=80',
+                badge: 'Bestseller',
+                rating: 4.8,
+                reviews: 512
+            },
+            {
+                id: 8,
+                name: 'Hydrating Face Cream',
+                category: 'skincare',
+                price: 68.99,
+                originalPrice: null,
+                image: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=500&q=80',
+                badge: null,
+                rating: 4.7,
+                reviews: 389
+            },
+            {
+                id: 9,
+                name: 'Vitamin C Brightening Serum',
+                category: 'skincare',
+                price: 78.99,
+                originalPrice: 95.99,
+                image: 'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=500&q=80',
+                badge: 'Sale',
+                rating: 4.9,
+                reviews: 634
+            },
+            {
+                id: 10,
+                name: 'Exfoliating Face Scrub',
+                category: 'skincare',
+                price: 42.99,
+                originalPrice: null,
+                image: 'https://images.unsplash.com/photo-1570554886111-e80fcca6a029?w=500&q=80',
+                badge: null,
+                rating: 4.6,
+                reviews: 245
+            },
+            {
+                id: 11,
+                name: 'Retinol Night Cream',
+                category: 'skincare',
+                price: 94.99,
+                originalPrice: null,
+                image: 'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=500&q=80',
+                badge: 'New',
+                rating: 4.8,
+                reviews: 178
+            },
+            {
+                id: 12,
+                name: 'Hyaluronic Acid Moisturizer',
+                category: 'skincare',
+                price: 56.99,
+                originalPrice: null,
+                image: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=500&q=80',
+                badge: null,
+                rating: 4.7,
+                reviews: 423
+            },
+            {
+                id: 26,
+                name: 'Clay Purifying Mask',
+                category: 'skincare',
+                price: 38.99,
+                originalPrice: null,
+                image: 'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=500&q=80',
+                badge: null,
+                rating: 4.5,
+                reviews: 287
+            },
+            {
+                id: 27,
+                name: 'Eye Cream Anti-Aging',
+                category: 'skincare',
+                price: 72.99,
+                originalPrice: null,
+                image: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=500&q=80',
+                badge: 'New',
+                rating: 4.8,
+                reviews: 201
+            },
+
+            // Fragrance Products (4)
+            {
+                id: 13,
+                name: 'Rose Gold Perfume',
+                category: 'fragrance',
+                price: 149.99,
+                originalPrice: null,
+                image: 'https://images.unsplash.com/photo-1541643600914-78b084683601?w=500&q=80',
+                badge: 'Exclusive',
+                rating: 5.0,
+                reviews: 289
+            },
+            {
+                id: 14,
+                name: 'Midnight Oud Parfum',
+                category: 'fragrance',
+                price: 189.99,
+                originalPrice: null,
+                image: 'https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=500&q=80',
+                badge: 'Limited',
+                rating: 4.9,
+                reviews: 156
+            },
+            {
+                id: 15,
+                name: 'Citrus Blossom EDT',
+                category: 'fragrance',
+                price: 119.99,
+                originalPrice: 149.99,
+                image: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?w=500&q=80',
+                badge: 'Sale',
+                rating: 4.6,
+                reviews: 234
+            },
+            {
+                id: 16,
+                name: 'Vanilla Dream Spray',
+                category: 'fragrance',
+                price: 79.99,
+                originalPrice: null,
+                image: 'https://images.unsplash.com/photo-1541643600914-78b084683601?w=500&q=80',
+                badge: null,
+                rating: 4.7,
+                reviews: 367
+            },
+
+            // Tools Products (4)
+            {
+                id: 18,
+                name: 'Professional Brush Set',
+                category: 'tools',
+                price: 149.99,
+                originalPrice: null,
+                image: 'https://images.unsplash.com/photo-1596704017254-9b121068ec31?w=500&q=80',
+                badge: 'Bestseller',
+                rating: 4.9,
+                reviews: 589
+            },
+            {
+                id: 19,
+                name: 'Beauty Sponge Collection',
+                category: 'tools',
+                price: 24.99,
+                originalPrice: null,
+                image: 'https://images.unsplash.com/photo-1596704017254-9b121068ec31?w=500&q=80',
+                badge: null,
+                rating: 4.7,
+                reviews: 445
+            },
+            {
+                id: 20,
+                name: 'Jade Roller & Gua Sha Set',
+                category: 'tools',
+                price: 39.99,
+                originalPrice: 52.99,
+                image: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=500&q=80',
+                badge: 'Sale',
+                rating: 4.8,
+                reviews: 312
+            },
+            {
+                id: 21,
+                name: 'LED Makeup Mirror',
+                category: 'tools',
+                price: 89.99,
+                originalPrice: null,
+                image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=500&q=80',
+                badge: null,
+                rating: 4.6,
+                reviews: 198
+            }
+        ];
+
+        let currentFilter = 'all';
+        let currentProducts = [...allProducts];
+
+        function renderProducts(products) {
+            const container = document.getElementById('product-list');
+
+            const html = products.map((product, index) => {
+                const badgeHTML = product.badge ?
+                    `<span class="product-badge ${product.badge.toLowerCase()}">${product.badge}</span>` : '';
+
+                const originalPriceHTML = product.originalPrice ?
+                    `<span class="original-price">$${product.originalPrice.toFixed(2)}</span>` : '';
+
+                return `
+                    <div class="product-card" style="animation-delay: ${index * 0.05}s">
+                        <div class="product-image">
+                            <img src="${product.image}" alt="${product.name}">
+                            ${badgeHTML}
+                            <button class="quick-view" onclick="quickView(${product.id})">Quick View</button>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">${product.category}</div>
+                            <h3 class="product-name">${product.name}</h3>
+                            <div class="product-rating">
+                                <span class="stars">${'★'.repeat(Math.floor(product.rating))}${'☆'.repeat(5 - Math.floor(product.rating))}</span>
+                                <span class="rating-count">(${product.reviews})</span>
+                            </div>
+                            <div class="product-price">
+                                $${product.price.toFixed(2)}
+                                ${originalPriceHTML}
+                            </div>
+                            <button class="add-to-cart" onclick="addToCart(${product.id})">Add to Cart</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            container.innerHTML = html;
+            updateProductCount(products.length);
+        }
+
+        function filterProducts(category) {
+            currentFilter = category;
+
+            // Update active button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Filter products
+            if (category === 'all') {
+                currentProducts = [...allProducts];
+            } else {
+                currentProducts = allProducts.filter(p => p.category === category);
+            }
+
+            renderProducts(currentProducts);
+        }
+
+        function sortProducts(sortType) {
+            let sorted = [...currentProducts];
+
+            switch (sortType) {
+                case 'price-low':
+                    sorted.sort((a, b) => a.price - b.price);
+                    break;
+                case 'price-high':
+                    sorted.sort((a, b) => b.price - a.price);
+                    break;
+                case 'rating':
+                    sorted.sort((a, b) => b.rating - a.rating);
+                    break;
+                default:
+                    // featured - keep original order
+                    break;
+            }
+
+            currentProducts = sorted;
+            renderProducts(currentProducts);
+        }
+
+        function updateProductCount(count) {
+            const countElement = document.getElementById('product-count');
+            if (currentFilter === 'all') {
+                countElement.textContent = `Showing all ${count} products`;
+            } else {
+                countElement.textContent = `${count} ${currentFilter} products`;
+            }
+        }
+
+        function quickView(productId) {
+            const product = allProducts.find(p => p.id === productId);
+            alert(`Quick View: ${product.name}\nPrice: $${product.price}\nRating: ${product.rating}★\n\nThis would open a modal in a full implementation.`);
+        }
+
+        function addToCart(productId) {
+            const product = allProducts.find(p => p.id === productId);
+            alert(`Added "${product.name}" to cart!`);
+        }
+
+        // Initialize
         document.addEventListener('DOMContentLoaded', () => {
-            Shop.loadAllProducts();
+            renderProducts(currentProducts);
         });
     </script>
 </body>
