@@ -7,34 +7,47 @@ const Cart = {
     renderCart: () => {
         const container = document.getElementById('cart-items');
         const totalEl = document.getElementById('cart-total');
+        const subtotalEl = document.getElementById('cart-subtotal');
+        const itemCountEl = document.getElementById('item-count');
+        const emptyState = document.getElementById('empty-cart-state');
+        const tableSection = document.getElementById('cart-table-section');
+        const summarySection = document.getElementById('cart-summary-section');
+
         const cart = Utils.getCart();
 
         if (!container) return;
 
+        let total = 0;
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+        if (itemCountEl) itemCountEl.textContent = totalItems;
+
         if (cart.length === 0) {
-            container.innerHTML = `
-                <tr>
-                    <td colspan="5" style="text-align:center; padding: 4rem 2rem;">
-                        <div style="font-size: 3rem; margin-bottom: 1rem;">🛍️</div>
-                        <h3 style="margin-bottom: 0.5rem;">Your bag is empty</h3>
-                        <p style="color: #777; margin-bottom: 2rem;">Looks like you haven't added any beauty essentials yet.</p>
-                        <a href="products.html" class="btn">Start Shopping</a>
-                    </td>
-                </tr>`;
+            if (emptyState) emptyState.style.display = 'block';
+            if (tableSection) tableSection.style.display = 'none';
+            if (summarySection) summarySection.style.display = 'none';
+
             if (totalEl) totalEl.textContent = Utils.formatCurrency(0);
+            if (subtotalEl) subtotalEl.textContent = Utils.formatCurrency(0);
+            // Fallback clear
+            container.innerHTML = '';
             return;
         }
 
-        let total = 0;
+        if (emptyState) emptyState.style.display = 'none';
+        if (tableSection) tableSection.style.display = 'block';
+        if (summarySection) summarySection.style.display = 'flex';
 
-        container.innerHTML = cart.map(item => {
+        container.innerHTML = cart.map((item) => {
             const subtotal = item.price * item.quantity;
             total += subtotal;
+            // Handle both remote and local images gracefully
+            const imageSrc = item.imageUrl ? item.imageUrl : 'img/placeholder.jpg';
             return `
                 <tr>
                     <td style="width: 50%;">
                         <div style="display: flex; align-items: center; gap: 2rem;">
-                            <img src="${item.imageUrl}" alt="${item.name}" style="width: 100px; height: 100px; object-fit: cover; border-radius: var(--radius-sm); background: #f8f8f8;">
+                            <img src="${imageSrc}" alt="${item.name}" style="width: 100px; height: 100px; object-fit: cover; border-radius: var(--radius-sm); background: #f8f8f8;">
                             <div>
                                 <h4 style="margin-bottom: 0.5rem; font-size: 1.1rem;">${item.name}</h4>
                                 <button onclick="Cart.removeItem(${item.id})" style="border: none; background: none; text-decoration: underline; color: var(--color-text-muted); cursor: pointer; padding: 0; font-family: var(--font-body); font-size: 0.85rem;">Remove</button>
@@ -51,6 +64,7 @@ const Cart = {
         }).join('');
 
         if (totalEl) totalEl.textContent = Utils.formatCurrency(total);
+        if (subtotalEl) subtotalEl.textContent = Utils.formatCurrency(total);
     },
 
     updateQuantity: (id, quantity) => {

@@ -1051,7 +1051,17 @@
 
         function addToCart(productId) {
             const product = allProducts.find(p => p.id === productId);
-            alert(`Added "${product.name}" to cart!`);
+            if (typeof Utils !== 'undefined') {
+                Utils.addToCart({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    imageUrl: product.image
+                });
+            } else {
+                alert(`Added "${product.name}" to cart!`);
+                window.location.href = 'cart.html';
+            }
         }
 
         // Initialize
@@ -1059,6 +1069,7 @@
             renderProducts(currentProducts);
         });
     </script>
+    <script src="js/app.js"></script>
 </body>
 
 </html>

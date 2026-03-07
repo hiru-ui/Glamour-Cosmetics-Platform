@@ -849,138 +849,24 @@
         </div>
     </footer>
 
+    <script src="js/app.js"></script>
+    <script src="js/cart.js"></script>
     <script>
-        // Mock cart data (replace with actual cart.js functionality)
-        const cartItems = [
-            {
-                id: 1,
-                name: 'Radiant Glow Serum',
-                category: 'Skincare',
-                price: 89.99,
-                quantity: 2,
-                image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=200&q=80'
-            },
-            {
-                id: 2,
-                name: 'Velvet Matte Lipstick',
-                category: 'Makeup',
-                price: 34.99,
-                quantity: 1,
-                image: 'https://images.unsplash.com/photo-1631214524020-7e18db9a8f92?w=200&q=80'
-            },
-            {
-                id: 3,
-                name: 'Rose Gold Perfume',
-                category: 'Fragrance',
-                price: 149.99,
-                quantity: 1,
-                image: 'https://images.unsplash.com/photo-1541643600914-78b084683601?w=200&q=80'
-            },
-            {
-                id: 4,
-                name: 'Luxury Face Palette',
-                category: 'Makeup',
-                price: 129.99,
-                quantity: 1,
-                image: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=200&q=80'
-            }
-        ];
-
-        function renderCart() {
-            const cartItemsContainer = document.getElementById('cart-items');
-            const emptyState = document.getElementById('empty-cart-state');
-            const tableSection = document.getElementById('cart-table-section');
-            const summarySection = document.getElementById('cart-summary-section');
-            const itemCountElement = document.getElementById('item-count');
-
-            if (cartItems.length === 0) {
-                emptyState.style.display = 'block';
-                tableSection.style.display = 'none';
-                summarySection.style.display = 'none';
-                if (itemCountElement) itemCountElement.textContent = '0';
-                return;
-            }
-
-            emptyState.style.display = 'none';
-            tableSection.style.display = 'block';
-            summarySection.style.display = 'flex';
-
-            // Update item count
-            const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
-            if (itemCountElement) {
-                itemCountElement.textContent = totalItems;
-            }
-
-            let html = '';
-            let subtotal = 0;
-
-            cartItems.forEach((item, index) => {
-                const itemTotal = item.price * item.quantity;
-                subtotal += itemTotal;
-
-                html += `
-                    <tr style="animation: slideUp 0.6s ease-out ${index * 0.1}s both;">
-                        <td>
-                            <div class="product-cell">
-                                <div class="product-image">
-                                    <img src="${item.image}" alt="${item.name}">
-                                </div>
-                                <div class="product-details">
-                                    <div class="product-category">${item.category}</div>
-                                    <h3>${item.name}</h3>
-                                    <a href="#" class="remove-item" onclick="removeItem(${item.id}); return false;">✕ Remove</a>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="price-cell">$${item.price.toFixed(2)}</td>
-                        <td>
-                            <div class="quantity-controls">
-                                <button class="quantity-btn" onclick="updateQuantity(${item.id}, -1)">−</button>
-                                <div class="quantity-display">${item.quantity}</div>
-                                <button class="quantity-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
-                            </div>
-                        </td>
-                        <td class="total-cell">$${itemTotal.toFixed(2)}</td>
-                    </tr>
-                `;
-            });
-
-            cartItemsContainer.innerHTML = html;
-            document.getElementById('cart-subtotal').textContent = `$${subtotal.toFixed(2)}`;
-            document.getElementById('cart-total').textContent = `$${subtotal.toFixed(2)}`;
-        }
-
-        function updateQuantity(itemId, change) {
-            const item = cartItems.find(i => i.id === itemId);
-            if (item) {
-                item.quantity = Math.max(1, item.quantity + change);
-                renderCart();
-            }
-        }
-
-        function removeItem(itemId) {
-            const index = cartItems.findIndex(i => i.id === itemId);
-            if (index > -1) {
-                if (confirm('Remove this item from your bag?')) {
-                    cartItems.splice(index, 1);
-                    renderCart();
-                }
-            }
-        }
-
         function applyPromo() {
             const promoCode = document.getElementById('promo-input').value;
             if (promoCode) {
-                alert(`Promo code "${promoCode}" applied! (This is a demo)`);
+                alert(`Promo code "${promoCode}" applied!`);
             }
         }
 
         function checkout() {
+            const cart = Utils.getCart();
+            if (cart.length === 0) {
+                alert("Your cart is empty!");
+                return;
+            }
             alert('Proceeding to secure checkout...');
         }
-
-        // Initialize cart on page load
-        document.addEventListener('DOMContentLoaded', renderCart);
     </script>
 </body>
 
