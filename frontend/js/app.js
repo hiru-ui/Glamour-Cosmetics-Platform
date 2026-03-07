@@ -33,6 +33,9 @@ const Utils = {
         // Dispatch event for UI updates
         window.dispatchEvent(new Event('cartUpdated'));
         alert('Product added to cart!'); // Simple notification for now
+
+        // Redirect to cart page
+        window.location.href = 'cart.html';
     },
 
     updateCartCount: () => {
