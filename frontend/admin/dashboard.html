@@ -46,6 +46,7 @@
     <footer></footer>
 
     <script src="../js/app.js"></script>
+    <script src="../js/auth.js"></script>
     <script src="../js/shop.js"></script>
     <script src="../js/admin.js"></script>
     <script>
@@ -76,7 +77,12 @@
                         <td><span style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;">${product.category}</span></td>
                         <td style="font-weight: 600;">${Utils.formatCurrency(product.price)}</td>
                         <td>
-                            ${product.stockQuantity > 0 ? '<span class="status-badge status-instock">In Stock</span>' : '<span class="status-badge status-low">Out of Stock</span>'}
+                            <div style="display: flex; flex-direction: column; gap: 4px;">
+                                ${product.stockQuantity > 0 ? '<span class="status-badge status-instock">In Stock (' + product.stockQuantity + ')</span>' : '<span class="status-badge status-low">Out of Stock</span>'}
+                                <span class="status-badge" style="background: ${product.status === 'ACTIVE' ? '#e6f4ea' : '#fce8e6'}; color: ${product.status === 'ACTIVE' ? '#1e7e34' : '#d93025'};">
+                                    ${product.status || 'ACTIVE'}
+                                </span>
+                            </div>
                         </td>
                         <td>
                             <div style="display: flex; gap: 0.5rem;">

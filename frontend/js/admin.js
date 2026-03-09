@@ -69,6 +69,8 @@ const Admin = {
                 document.getElementById('category').value = product.category;
                 document.getElementById('description').value = product.description;
                 document.getElementById('imageUrl').value = product.imageUrl;
+                document.getElementById('stockQuantity').value = product.stockQuantity || 0;
+                document.getElementById('status').value = product.status || 'ACTIVE';
             }
         } else {
             titleEl.textContent = 'Add New Product';
@@ -86,6 +88,8 @@ const Admin = {
             category: document.getElementById('category').value,
             description: document.getElementById('description').value,
             imageUrl: document.getElementById('imageUrl').value,
+            stockQuantity: parseInt(document.getElementById('stockQuantity').value),
+            status: document.getElementById('status').value,
         };
 
         if (Shop.useApi) {

@@ -1066,9 +1066,21 @@
 
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const filterParam = params.get('filter');
+
+            if (filterParam === 'new') {
+                currentFilter = 'new';
+                currentProducts = allProducts.filter(p => p.badge === 'New');
+            } else if (filterParam) {
+                currentFilter = filterParam;
+                currentProducts = allProducts.filter(p => p.category.toLowerCase() === filterParam.toLowerCase());
+            }
+
             renderProducts(currentProducts);
         });
     </script>
+    <script src="js/auth.js"></script>
     <script src="js/app.js"></script>
 </body>
 

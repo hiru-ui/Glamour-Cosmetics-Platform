@@ -41,6 +41,7 @@ public class ProductService {
             existingProduct.setPrice(productDetails.getPrice());
             existingProduct.setCategory(productDetails.getCategory());
             existingProduct.setStockQuantity(productDetails.getStockQuantity());
+            existingProduct.setStatus(productDetails.getStatus());
             existingProduct.setImageUrl(productDetails.getImageUrl());
             return productRepository.save(existingProduct);
         }).orElseThrow(() -> new RuntimeException("Product not found with id " + id));
