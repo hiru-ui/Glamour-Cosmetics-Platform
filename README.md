@@ -83,16 +83,16 @@ Glamour-Cosmetics-Platform/
 
 ---
 
-## 📸 Screenshots
-*(Add your screenshots here!)*
+## Admin dashboard
+login as a admin.. use,
+          email : admin@gmail.com
+          password : admin523
 
 ---
 
 ## 🤝 Contributing
 Contributions are welcome! Please feel free to submit a Pull Request or open an issue for any bugs or feature requests.
 
-## 📄 License
-This project is licensed under the MIT License - see the LICENSE file for details.
 
 ---
 *Crafted with ❤️ for the beauty industry.*
