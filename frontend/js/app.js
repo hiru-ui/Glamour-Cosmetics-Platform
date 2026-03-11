@@ -50,6 +50,11 @@ const Utils = {
     // Inject Navigation and Footer to avoid code duplication
     injectLayout: () => {
         const isPageAdmin = window.location.pathname.includes('/admin/');
+        const isAuthPage = window.location.pathname.includes('login.html') ||
+            window.location.pathname.includes('signup.html');
+
+        if (isAuthPage) return;
+
         const prefix = isPageAdmin ? '../' : '';
 
         const header = `

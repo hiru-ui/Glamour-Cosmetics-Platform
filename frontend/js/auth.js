@@ -1,10 +1,10 @@
 const Auth = {
-    login: async (email, password, role) => {
+    login: async (email, password) => {
         try {
             const response = await fetch(`${CONFIG.API_BASE_URL}/auth/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password, role })
+                body: JSON.stringify({ email, password })
             });
 
             if (response.ok) {

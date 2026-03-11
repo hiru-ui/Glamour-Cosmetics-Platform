@@ -4,87 +4,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | Glamour Cosmetics</title>
+    <title>Welcome | GLAMOUR Vibrant Beauty</title>
     <link rel="stylesheet" href="css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
     <style>
         :root {
-            --glass-bg: rgba(255, 255, 255, 0.1);
-            --glass-border: rgba(255, 255, 255, 0.2);
-            --accent-color: #ff6b6b;
+            --color-primary: #ff75c3;
+            --color-secondary: #ffa647;
+            --color-tertiary: #ffe83f;
+            --color-quaternary: #9fff5b;
+            --color-quinary: #70e2ff;
+            --color-senary: #cd93ff;
+            --font-display: 'Playfair Display', serif;
+            --font-ui: 'Outfit', sans-serif;
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Outfit', sans-serif;
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            font-family: var(--font-ui);
+            background: #fff;
             height: 100vh;
+            overflow: hidden;
+            color: #333;
+        }
+
+        .main-wrapper {
+            display: flex;
+            height: 100vh;
+            width: 100%;
+        }
+
+        /* --- Colorful Side (Left) --- */
+        .color-panel {
+            flex: 1.2;
+            position: relative;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
-            color: white;
+            background: linear-gradient(45deg, var(--color-primary), var(--color-senary));
         }
 
-        .background-blobs {
+        .visual-img {
             position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            z-index: 0;
+            object-fit: cover;
+            mix-blend-mode: overlay;
+            opacity: 0.9;
+            animation: panSlow 30s infinite alternate ease-in-out;
         }
 
-        .blob {
-            position: absolute;
-            filter: blur(80px);
-            border-radius: 50%;
-            opacity: 0.6;
-            animation: move 20s infinite alternate;
-        }
-
-        .blob-1 {
-            width: 400px;
-            height: 400px;
-            background: #ff6b6b;
-            top: -100px;
-            left: -100px;
-        }
-
-        .blob-2 {
-            width: 500px;
-            height: 500px;
-            background: #4ecdc4;
-            bottom: -150px;
-            right: -150px;
-        }
-
-        @keyframes move {
+        @keyframes panSlow {
             from {
-                transform: translate(0, 0);
+                transform: scale(1) translate(0, 0);
             }
 
             to {
-                transform: translate(100px, 100px);
+                transform: scale(1.2) translate(-20px, -20px);
             }
         }
 
-        .login-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
+        .brand-overlay {
+            position: relative;
+            z-index: 2;
+            text-align: center;
             padding: 3rem;
-            width: 100%;
-            max-width: 420px;
-            z-index: 1;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-            animation: fadeInUp 0.8s ease-out;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: popIn 1s cubic-bezier(0.17, 0.67, 0.83, 0.67) forwards;
         }
 
-        @keyframes fadeInUp {
+        @keyframes popIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .brand-overlay h1 {
+            font-family: var(--font-display);
+            font-size: 4.5rem;
+            letter-spacing: -2px;
+            color: #fff;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+
+        .brand-overlay p {
+            font-size: 1.1rem;
+            letter-spacing: 4px;
+            color: #fff;
+            text-transform: uppercase;
+            font-weight: 300;
+        }
+
+        /* --- Form Side (Right) --- */
+        .form-panel {
+            flex: 1;
+            background: #fdfdfd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem;
+            position: relative;
+        }
+
+        .form-card {
+            width: 100%;
+            max-width: 420px;
+            animation: slideUp 0.8s ease-out forwards;
+        }
+
+        @keyframes slideUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(20px);
             }
 
             to {
@@ -93,46 +148,22 @@
             }
         }
 
-        .logo-container {
-            text-align: center;
-            margin-bottom: 2rem;
+        .welcome-header {
+            margin-bottom: 3rem;
+            text-align: left;
         }
 
-        .logo-container h1 {
-            font-size: 2.2rem;
-            margin: 0;
-            font-weight: 600;
-            letter-spacing: 2px;
-            background: linear-gradient(to right, #fff, var(--accent-color));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .welcome-header h2 {
+            font-family: var(--font-display);
+            font-size: 2.8rem;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            font-weight: 700;
         }
 
-        .role-switch {
-            display: flex;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 12px;
-            padding: 4px;
-            margin-bottom: 2rem;
-        }
-
-        .role-btn {
-            flex: 1;
-            padding: 10px;
-            border: none;
-            background: transparent;
-            color: rgba(255, 255, 255, 0.6);
-            cursor: pointer;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-
-        .role-btn.active {
-            background: var(--accent-color);
-            color: white;
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        .welcome-header p {
+            color: #888;
+            font-size: 1.1rem;
         }
 
         .form-group {
@@ -141,148 +172,214 @@
 
         .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-            opacity: 0.8;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #444;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .input-box {
+            position: relative;
         }
 
         .form-group input {
             width: 100%;
-            padding: 12px 16px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--glass-border);
-            border-radius: 12px;
-            color: white;
+            padding: 16px 20px;
+            background: #f5f5f5;
+            border: 2px solid transparent;
+            border-radius: 16px;
             font-size: 1rem;
+            color: #1a1a1a;
             transition: all 0.3s ease;
-            box-sizing: border-box;
+            outline: none;
         }
 
         .form-group input:focus {
-            outline: none;
-            border-color: var(--accent-color);
-            background: rgba(255, 255, 255, 0.1);
+            background: #fff;
+            border-color: var(--color-primary);
+            box-shadow: 0 10px 20px rgba(255, 117, 195, 0.1);
         }
 
-        .login-btn {
+        .login-btn-vibrant {
             width: 100%;
-            padding: 14px;
-            background: var(--accent-color);
+            padding: 18px;
+            background: linear-gradient(to right, var(--color-primary), var(--color-senary));
+            color: #fff;
             border: none;
-            border-radius: 12px;
-            color: white;
+            border-radius: 16px;
             font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 1rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            margin-top: 1.5rem;
+            box-shadow: 0 10px 30px rgba(255, 117, 195, 0.3);
         }
 
-        .login-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.4);
+        .login-btn-vibrant:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 40px rgba(255, 117, 195, 0.4);
         }
 
-        .footer-links {
+        .login-btn-vibrant:active {
+            transform: scale(0.98);
+        }
+
+        .signup-footer {
+            margin-top: 3rem;
             text-align: center;
-            margin-top: 2rem;
-            font-size: 0.9rem;
-            opacity: 0.7;
+            font-size: 1rem;
+            color: #777;
         }
 
-        .footer-links a {
-            color: white;
+        .signup-footer a {
+            color: var(--color-primary);
             text-decoration: none;
             font-weight: 600;
-            margin-left: 5px;
+            margin-left: 8px;
         }
 
-        .footer-links a:hover {
+        .signup-footer a:hover {
             text-decoration: underline;
         }
 
+        .back-link {
+            position: absolute;
+            top: 3rem;
+            left: 3rem;
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+        }
+
+        .back-link:hover {
+            color: var(--color-primary);
+        }
+
         #error-msg {
+            background: #fff0f0;
             color: #ff4d4d;
-            font-size: 0.85rem;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 0.9rem;
             text-align: center;
-            margin-top: 1rem;
+            margin-top: 1.5rem;
             display: none;
+            border: 1px solid #ffebeb;
+        }
+
+        /* Ambient Glow Decor */
+        .glow-sphere {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: var(--color-primary);
+            filter: blur(100px);
+            opacity: 0.1;
+            z-index: -1;
+            border-radius: 50%;
+        }
+
+        @media (max-width: 900px) {
+            .color-panel {
+                display: none;
+            }
+
+            .form-panel {
+                padding: 2rem;
+            }
+
+            .back-link {
+                top: 2rem;
+                left: 2rem;
+            }
         }
     </style>
 </head>
 
 <body>
-    <div class="background-blobs">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-    </div>
-
-    <div class="login-card">
-        <div class="logo-container">
-            <h1>GLAMOUR</h1>
-            <p style="font-size: 0.8rem; letter-spacing: 4px; opacity: 0.6; margin-top: 5px;">EST. 2024</p>
-        </div>
-
-        <div class="role-switch">
-            <button class="role-btn active" onclick="setRole('USER')">Customer</button>
-            <button class="role-btn" onclick="setRole('ADMIN')">Administrator</button>
-        </div>
-
-        <form id="login-form">
-            <input type="hidden" id="role" value="USER">
-
-            <div class="form-group">
-                <label>EMAIL</label>
-                <input type="email" id="email" required placeholder="admin@gmail.com">
+    <div class="main-wrapper">
+        <!-- Colorful Visual Section -->
+        <section class="color-panel">
+            <img src="img/login-vibrant.png" alt="Vibrant Cosmetics" class="visual-img">
+            <div class="brand-overlay">
+                <h1>GLAMOUR</h1>
+                <p>Radiance Awaits</p>
             </div>
+        </section>
 
-            <div class="form-group">
-                <label>PASSWORD</label>
-                <input type="password" id="password" required placeholder="••••••••">
+        <!-- Dynamic Form Section -->
+        <section class="form-panel">
+            <div class="glow-sphere" style="top: -100px; right: -100px; background: var(--color-senary);"></div>
+            <div class="glow-sphere" style="bottom: -100px; left: -100px;"></div>
+
+            <a href="index.html" class="back-link">← Return to Gallery</a>
+
+            <div class="form-card">
+                <div class="welcome-header">
+                    <h2>Hello Gorgeous,</h2>
+                    <p>Enter your details to step back into the world of elevated beauty.</p>
+                </div>
+
+                <form id="login-form">
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <div class="input-box">
+                            <input type="email" id="email" required placeholder="your@email.com">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Password</label>
+                        <div class="input-box">
+                            <input type="password" id="password" required placeholder="••••••••">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="login-btn-vibrant" id="login-btn">Sign In to Shine</button>
+                    <div id="error-msg"></div>
+                </form>
+
+                <div class="signup-footer">
+                    New here? <a href="signup.html">Create an Account</a>
+                </div>
             </div>
-
-            <button type="submit" class="login-btn">Secure Login</button>
-            <div id="error-msg"></div>
-        </form>
-
-        <div class="footer-links">
-            Don't have an account? <a href="signup.html">Sign Up</a>
-        </div>
+        </section>
     </div>
 
     <script src="js/app.js"></script>
     <script src="js/auth.js"></script>
     <script>
-        function setRole(role) {
-            document.getElementById('role').value = role;
-            const buttons = document.querySelectorAll('.role-btn');
-            buttons.forEach(btn => {
-                if (btn.innerText.includes(role === 'USER' ? 'Customer' : 'Administrator')) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
-            });
-
-            // Adjust colors based on role
-            if (role === 'ADMIN') {
-                document.documentElement.style.setProperty('--accent-color', '#4ecdc4');
-            } else {
-                document.documentElement.style.setProperty('--accent-color', '#ff6b6b');
-            }
-        }
-
         document.getElementById('login-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
-            const role = document.getElementById('role').value;
             const errorEl = document.getElementById('error-msg');
+            const btn = document.getElementById('login-btn');
 
-            const result = await Auth.login(email, password, role);
-            if (!result.success) {
-                errorEl.innerText = result.message;
+            // Feedback
+            btn.innerText = 'Connecting...';
+            btn.disabled = true;
+            errorEl.style.display = 'none';
+
+            try {
+                const result = await Auth.login(email, password);
+                if (!result.success) {
+                    errorEl.innerText = result.message;
+                    errorEl.style.display = 'block';
+                    btn.innerText = 'Sign In to Shine';
+                    btn.disabled = false;
+                }
+            } catch (err) {
+                errorEl.innerText = "Connection lost. Please try again.";
                 errorEl.style.display = 'block';
+                btn.innerText = 'Sign In to Shine';
+                btn.disabled = false;
             }
         });
     </script>
