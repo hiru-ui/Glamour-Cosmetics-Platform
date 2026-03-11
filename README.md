@@ -87,7 +87,10 @@ Glamour-Cosmetics-Platform/
 login as a admin.. use,
           email : admin@gmail.com
           password : admin523
-
+          
+## User login
+          email : user@gmail.com
+          password : user123
 ---
 
 ## 🤝 Contributing
